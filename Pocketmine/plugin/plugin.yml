@@ -1,5 +1,5 @@
 name: "Barrel Classic Detect"
-api: "3.28.1"
+api: ["3.28.1", "1.5.1"]
 main: org\CreadoresProgram\BarrelClassicDetect\PocketmineMain
 version: "1.0.0"
 description: "Detects when a ClassiCube player joins your server"
