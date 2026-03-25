@@ -20,6 +20,6 @@ public class NukkitMain extends PluginBase{
     return player.getLoginChainData().getDeviceModel().equals("Barrel CREA Classic") && player.getLoginChainData().getDeviceOS() == 7;
   }
   public List<Player> getCCPlayers(){
-    return this.getServer().getOnlinePlayers().values().stream().filter(player -> isJavaPlayer(player)).collect(Collectors.toList());
+    return this.getServer().getOnlinePlayers().values().stream().filter(player -> isCCPlayer(player)).collect(Collectors.toList());
   }
 }
