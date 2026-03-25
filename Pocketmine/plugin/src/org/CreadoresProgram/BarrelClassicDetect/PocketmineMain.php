@@ -18,6 +18,6 @@ class PocketmineMain extends PluginBase{
     return ($player->getDeviceModel() == "Barrel CREA Classic") && ($player->getDeviceOS() == 7);
   }
   public function getCCPlayers() : array{
-    return array_filter($this->getServer()->getOnlinePlayers(), fn($player) => $this->isJavaPlayer($player));
+    return array_filter($this->getServer()->getOnlinePlayers(), fn($player) => $this->isCCPlayer($player));
   }
 }
