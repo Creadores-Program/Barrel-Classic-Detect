@@ -1,0 +1,37 @@
+name: Build CI
+on: [push, pull_request]
+jobs:
+  pmBuild:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.0'
+      - name: Build PHAR
+        run: php -d phar.readonly=0 build.php
+        working-directory: ./Pocketmine
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: BarrelClassicDetectPM
+          path: Pocketmine/Barrel-Classic-Detect.phar
+  nkBuild:
+    runs-on: ubuntu-latest
+    if: ${{ !contains(github.event.head_commit.message, '[ci skip]') }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up JDK 8
+        uses: actions/setup-java@v4
+        with:
+          java-version: 8
+          distribution: 'temurin'
+      - name: Build with Maven
+        run: |
+          mvn -B package --file Nukkit/pom.xml
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: BarrelClassicDetectNK
+          path: Nukkit/target/Barrel-Classic-Detect-1.0.0.jar
