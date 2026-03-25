@@ -1,4 +1,4 @@
-name: Barrel Classic Detect
+name: "Barrel Classic Detect"
 api: "1.0.0"
 main: org.CreadoresProgram.BarrelClassicDetect.Main
 version: "1.0.0"
