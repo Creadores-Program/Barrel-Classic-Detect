@@ -26,9 +26,9 @@ plugin.yml:
 ```yaml
 #...
 softdepend:
-  - "Barrel Classic Detect"
+  - "Barrel_Classic_Detect"
 loadbefore:
-  - "Barrel Classic Detect"
+  - "Barrel_Classic_Detect"
 ```
 example of use:
 ```java
@@ -50,7 +50,7 @@ Implement in your plugin:
 plugin.yml:
 ```yaml
 #...
-softdepend: ["Barrel Classic Detect"]
+softdepend: ["Barrel_Classic_Detect"]
 ```
 
 example of use:
@@ -62,7 +62,7 @@ declare(strict_types=1);
 use org\CreadoresProgram\BarrelClassicDetect\PocketmineMain;
 //...
 //is ClassiCube Player?
-PocketmineMain::getInstance()->isCCPlayer(player);//player = pocketmine\player\Player returns bool
+PocketmineMain::getInstance()->isCCPlayer(player);//player = pocketmine\player\Player or pocketmine\Player returns bool
 //get all ClassiCube Players
-PocketmineMain::getInstance()->getCCPlayers(); //returns pocketmine\player\Player[] array
+PocketmineMain::getInstance()->getCCPlayers(); //returns pocketmine\player\Player[] or pocketmine\Player[] array
 ```
