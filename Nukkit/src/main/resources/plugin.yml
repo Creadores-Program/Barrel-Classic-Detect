@@ -1,4 +1,4 @@
-name: "Barrel Classic Detect"
+name: "Barrel_Classic_Detect"
 api: "1.0.0"
 main: org.CreadoresProgram.BarrelClassicDetect.NukkitMain
 version: "1.0.0"
