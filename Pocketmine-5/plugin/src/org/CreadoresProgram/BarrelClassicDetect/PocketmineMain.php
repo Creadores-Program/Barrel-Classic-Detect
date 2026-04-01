@@ -3,7 +3,11 @@ declare(strict_types=1);
 namespace org\CreadoresProgram\BarrelClassicDetect;
 use pocketmine\plugin\PluginBase;
 use pocketmine\player\Player;
-class PocketmineMain extends PluginBase{
+use pocketmine\event\Listener;
+use pocketmine\event\server\DataPacketSendEvent;
+use pocketmine\network\mcpe\protocol\TextPacket;
+use pocketmine\network\mcpe\protocol\types\TextPacketType;
+class PocketmineMain extends PluginBase implements Listener{
   private static ?self $instance = null;
   public static function getInstance() : ?self{
     return self::$instance;
