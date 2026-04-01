@@ -1,4 +1,4 @@
-name: "Barrel Classic Detect"
+name: "Barrel_Classic_Detect"
 api: "5.39.3"
 main: org\CreadoresProgram\BarrelClassicDetect\PocketmineMain
 version: "1.0.0"
