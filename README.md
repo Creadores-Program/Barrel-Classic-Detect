@@ -2,7 +2,7 @@
 Detects when a ClassiCube player joins your server!
 
 
-Compatible with Nukkit and Pocketmine ([MySoft](https://github.com/Dr1xyDev/MySoft-0.15.x-1.21.x), [Submarine](https://github.com/Dr1xyDev/SubmarineMultiCore))!
+Compatible with Nukkit and Pocketmine ([MySoft](https://github.com/Dr1xyDev/MySoft-0.15.x-1.21.x), [Submarine](https://github.com/Dr1xyDev/SubmarineMultiCore), [Pocketmine 5 MV](https://github.com/vapebw/Pocketmine-5-MV))!
 
 ## Installation (Nukkit)
 Simply place the plugin in the plugins folder!
