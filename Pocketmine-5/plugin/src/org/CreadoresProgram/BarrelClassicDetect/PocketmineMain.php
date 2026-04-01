@@ -6,7 +6,6 @@ use pocketmine\player\Player;
 use pocketmine\event\Listener;
 use pocketmine\event\server\DataPacketSendEvent;
 use pocketmine\network\mcpe\protocol\TextPacket;
-use pocketmine\network\mcpe\protocol\types\TextPacketType;
 class PocketmineMain extends PluginBase implements Listener{
   private static ?self $instance = null;
   public static function getInstance() : ?self{
@@ -32,14 +31,14 @@ class PocketmineMain extends PluginBase implements Listener{
     
     foreach($packets as $packet){
         if($packet instanceof TextPacket){
-            if($packet->type !== TextPacketType::TRANSLATION){
+            if($packet->type !== TextPacket::TYPE_TRANSLATION){
                 continue;
             }
             foreach($event->getTargets() as $target){
                 $player = $target->getPlayer();
                 if($player instanceof Player && $this->isCCPlayer($player)){
                     
-                    $event->setCancelled();
+                    $event->cancel();
 
                     $newPacket = TextPacket::raw(
                         $this->getServer()->getLanguage()->translateString($packet->message, $packet->parameters)
