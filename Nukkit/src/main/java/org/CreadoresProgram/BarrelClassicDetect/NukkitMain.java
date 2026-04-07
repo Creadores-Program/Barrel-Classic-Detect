@@ -21,7 +21,7 @@ public class NukkitMain extends PluginBase implements Listener{
     this.getLogger().info("§cBye!");
   }
   public boolean isCCPlayer(Player player){
-    return player.getLoginChainData().getDeviceModel().equals("Barrel CREA Classic") && player.getLoginChainData().getDeviceOS() == 7;
+    return player.getLoginChainData().getDeviceModel().contains("Barrel CREA Classic") && player.getLoginChainData().getDeviceOS() == 7;
   }
   public List<Player> getCCPlayers(){
     return this.getServer().getOnlinePlayers().values().stream().filter(player -> isCCPlayer(player)).collect(Collectors.toList());
