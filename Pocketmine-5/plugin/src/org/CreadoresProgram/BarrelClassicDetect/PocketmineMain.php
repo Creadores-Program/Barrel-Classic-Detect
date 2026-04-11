@@ -3,11 +3,12 @@ declare(strict_types=1);
 namespace org\CreadoresProgram\BarrelClassicDetect;
 use pocketmine\plugin\PluginBase;
 use pocketmine\player\Player;
-use pocketmine\event\Listener;
-use pocketmine\event\server\DataPacketSendEvent;
-use pocketmine\network\mcpe\protocol\TextPacket;
-class PocketmineMain extends PluginBase implements Listener{
+class PocketmineMain extends PluginBase{
   private static ?self $instance = null;
+  private static string $deviceModelCC = "Barrel CREA Classic";
+  private static string $deviceModelP = "DeviceModel";
+  private static string $deviceOSP = "DeviceOS";
+  private static string $defDeviceModel = "";
   public static function getInstance() : ?self{
     return self::$instance;
   }
@@ -19,35 +20,11 @@ class PocketmineMain extends PluginBase implements Listener{
   }
   public function isCCPlayer(Player $player) : bool{
     $extraData = $player->getNetworkSession()->getPlayerInfo()->getExtraData();
-    $deviceModel = $extraData["DeviceModel"] ?? "";
-    $osId = $extraData["DeviceOS"] ?? -1;
-    return ($deviceModel == "Barrel CREA Classic") && ($osId == 7);
+    $deviceModel = $extraData[self::$deviceModelP] ?? self::$defDeviceModel;
+    $osId = $extraData[self::$deviceOSP] ?? -1;
+    return ($deviceModel == self::$deviceModelCC) && ($osId == 7);
   }
   public function getCCPlayers() : array{
     return array_filter($this->getServer()->getOnlinePlayers(), fn($player) => $this->isCCPlayer($player));
-  }
-  public function onDataPacketSend(DataPacketSendEvent $event) : void {
-    $packets = $event->getPackets();
-    
-    foreach($packets as $packet){
-        if($packet instanceof TextPacket){
-            if($packet->type !== TextPacket::TYPE_TRANSLATION){
-                continue;
-            }
-            foreach($event->getTargets() as $target){
-                $player = $target->getPlayer();
-                if($player instanceof Player && $this->isCCPlayer($player)){
-                    
-                    $event->cancel();
-
-                    $newPacket = TextPacket::raw(
-                        $this->getServer()->getLanguage()->translateString($packet->message, $packet->parameters)
-                    );
-                    
-                    $target->sendDataPacket($newPacket);
-                }
-            }
-        }
-    }
   }
 }
